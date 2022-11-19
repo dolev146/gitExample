@@ -88,4 +88,72 @@ For example, written in a form of a test that you can use:
   (list (apply min (open-list lst)) (apply max (open-list lst))))
 
 
+#|
+Question:2:
+In this question we will implement a simple Table data structure. In this data
+structure you will need to define a new type called Table. Each element in
+the table will be keyed (indexed) with a symbol. In the following the operations
+that you are required to implement are detailed below, together with some
+guidance.
+
+2.1. Implement the empty table EmptyTbl - this should be a variant of the
+data type (constructor).
+
+2.2. Implement the add operation Add - this too should be a variant of the
+data type. The add operation should take as input a symbol (key), a string
+(value), and an existing table and return an extended table in the natural
+way - see examples below.
+
+2.3. Implement the search operation search-table - the search operation
+should take as input a symbol (key) and a table and return the first (LIFO,
+last in first out) value that is keyed accordingly - see examples below. If
+the key does not appear in the original table, it should return a #f value
+(make sure the returned type of the function supports this; use the
+strictest type possible for the returned type).
+
+2.4. Implement the remove item operation remove-item - the remove item
+operation should take as input a table and a symbol (key) and return a
+new table contains the items of the original table except of the item
+to be deleted without the (first (LIFO) keyed value) - see examples
+below. If the original table was empty, it should return an empty table
+value.
+
+For example, written in a form of a test that you can use:
+
+(test (EmptyTbl) => (EmptyTbl)) 
+(test (Add 'b "B" (Add 'a "A" (EmptyTbl))) => (Add 'b "B" (Add 'a "A" (EmptyTbl))))
+(test (Add 'a "aa" (Add 'b "B" (Add 'a "A" (EmptyTbl)))) => (Add 'a "aa" (Add 'b "B" (Add 'a "A" (EmptyTbl)))))
+(test (search-table 'c (Add 'a "AAA" (Add 'b "B" (Add 'a "A" (EmptyTbl))))) => #f)
+(test (search-table 'a (Add 'a "AAA" (Add 'b "B" (Add 'a "A" (EmptyTbl))))) => "AAA")
+(test (remove-item (Add 'a "AAA" (Add 'b "B" (Add 'a "A"(EmptyTbl)))) 'a)=> (Add 'b "B" (Add 'a "A" (EmptyTbl))))
+(test (remove-item (Add 'a "AAA" (Add 'b "B" (Add 'a "A" (EmptyTbl)))) 'b)=> (Add 'a "AAA" (Add 'a "A" (EmptyTbl))))
+
+|#
+
+(define-type Table
+  [EmptyTbl] ; empty table
+  [Add Symbol String Table]) ; add a new item to the table
+
+(: search-table : Symbol Table -> (U String #f))
+(define (search-table k table)
+         (cases table
+           [(EmptyTbl) #f]
+           [(Add smbl str tb) (if(eq? k smbl) str (search-table k tb))] 
+         ))
+(: remove-item : Table Symbol -> Table)
+(define (remove-item table k)
+   (cases table
+           [(EmptyTbl) (EmptyTbl)]
+           [(Add smbl str tb)
+            (cond[(eq? smbl k) tb]
+                [else(Add smbl str (remove-item tb k))])]
+     ))
+
+ git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+
+
+
+
 

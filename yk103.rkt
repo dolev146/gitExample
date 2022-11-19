@@ -149,10 +149,6 @@ For example, written in a form of a test that you can use:
                 [else(Add smbl str (remove-item tb k))])]
      ))
 
- git config --global user.email "you@example.com"
-  git config --global user.name "Your Name"
-
-
 
 
 

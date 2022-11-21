@@ -56,10 +56,12 @@ Question:1.b:
 
 - Hint: you may use the default values of the minimum/maximum
   values as +inf.0 / -inf.0 which refers to ±∞.
-
 For example, written in a form of a test that you can use:
 (test (min&max '((1 2 3) (2 3 3 4) (9 2 -1) (233 11 90))) => '(-1.0 233.0))  
 
+Input : List of lists of numbers
+Output : List of numbers
+process : used min and max function to find the minimum and maximum of the elements of the inner lists , took 1 hour .
 |#
 
 ;; Answer:1.b: 
@@ -99,6 +101,9 @@ Write a function min&max_apply that does exactly what you did in
 part “b” but using apply function.
 For example, written in a form of a test that you can use:
 (test (min&max_apply '((1 2 3) (2 3 3 4) (9 2 -1) (233 11 90))) => '(-1 233))
+Input : List of lists of numbers
+Output : List of numbers
+process : used apply function to find the minimum and maximum of the elements of the inner lists , took 20 minutes  .
 |#
 ;; Answer:1.c:
 
@@ -121,10 +126,14 @@ guidance.
 2.1. Implement the empty table EmptyTbl - this should be a variant of the
 data type (constructor).
 
+Process : used define to define the empty table , took 5 minutes .
+
 2.2. Implement the add operation Add - this too should be a variant of the
 data type. The add operation should take as input a symbol (key), a string
 (value), and an existing table and return an extended table in the natural
 way - see examples below.
+
+Process : used define to define the add operation , took 20 minutes .
 
 2.3. Implement the search operation search-table - the search operation
 should take as input a symbol (key) and a table and return the first (LIFO,
@@ -132,6 +141,8 @@ last in first out) value that is keyed accordingly - see examples below. If
 the key does not appear in the original table, it should return a #f value
 (make sure the returned type of the function supports this; use the
 strictest type possible for the returned type).
+
+Process : used define to define the search operation , took 20 minutes .
 
 2.4. Implement the remove item operation remove-item - the remove item
 operation should take as input a table and a symbol (key) and return a
